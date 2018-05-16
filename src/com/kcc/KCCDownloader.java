@@ -14,13 +14,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class KCCDownloader extends JPanel implements ActionListener {
-    JButton chooseDirectory;
-    JButton downloaderButton;
-    JButton updateButton;
+    JButton chooseDir;
+    JButton downloaderBtn;
+    JButton updateBtn;
     JFileChooser chooser;
+    JProgressBar dnldBar;
     String chooserTitle;
     public static String urlADW =
-            "https://download.toolslib.net/download/file/1/1511?s=fCsBLYrYx47Y5GqwM9dAuYXazYt2lkvy";
+            "https://downloadADW.toolslib.net/downloadADW/file/1/1511?s=fCsBLYrYx47Y5GqwM9dAuYXazYt2lkvy";
     public static String saveDir;
     public static boolean run = false;
     private URL adwCleaner;
@@ -30,14 +31,14 @@ public class KCCDownloader extends JPanel implements ActionListener {
     private File adw;
 
     public KCCDownloader() {
-        chooseDirectory = new JButton("Select Directory");
-        downloaderButton = new JButton("Download");
-        updateButton = new JButton("Update Program");
-        chooseDirectory.addActionListener(this);
-        downloaderButton.addActionListener(e -> download());
-        add(updateButton);
-        add(chooseDirectory);
-        add(downloaderButton);
+        chooseDir = new JButton("Select Directory");
+        downloaderBtn = new JButton("Download");
+        updateBtn = new JButton("Update Program");
+        chooseDir.addActionListener(this);
+        downloaderBtn.addActionListener(e -> download());
+        add(updateBtn);
+        add(chooseDir);
+        add(downloaderBtn);
     }
 
     public static void main(String[] args) throws IOException {
@@ -54,9 +55,16 @@ public class KCCDownloader extends JPanel implements ActionListener {
         frame.setSize(panel.getPreferredSize());
         frame.setVisible(true);
     }
+
+    //Main download method that will download all files
     public void download() {
+        downloadADW();
+    }
+
+    //Download Methods
+    public void downloadADW() {
         //Tries to get the URL for the following programs
-       adw = new File(saveDir + "\\ADWCleaner.exe");
+        adw = new File(saveDir + "\\ADWCleaner.exe");
         {
             try {
                 adwCleaner = new URL(urlADW);
@@ -68,19 +76,20 @@ public class KCCDownloader extends JPanel implements ActionListener {
         if (run) {
             try {
                 FileUtils.copyURLToFile(adwCleaner, adw);
-                System.out.println("Saved to "+ saveDir);
+                System.out.println("Saved to " + saveDir);
                 System.out.println("Finished");
             } catch (IOException e) {//If it gets to this point, print out the error stream
                 System.out.print("Failed");
                 e.printStackTrace();
             }
 
-        }else{
+        } else {
             System.out.print(run);
             System.out.println("Do Nothing");
         }
     }
 
+    //Default Action Listener Method
     @Override
     public void actionPerformed(ActionEvent e) {
         int result;
@@ -110,6 +119,6 @@ public class KCCDownloader extends JPanel implements ActionListener {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(800, 200);
+        return new Dimension(200, 200);
     }
 }

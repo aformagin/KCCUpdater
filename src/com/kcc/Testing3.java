@@ -8,13 +8,13 @@ import java.net.URL;
 public class Testing3 {
     public static void main(String[] args) throws IOException {
         //URL and Directory to save to
-        String urlADW = "https://download.toolslib.net/download/file/1/1511?s=fCsBLYrYx47Y5GqwM9dAuYXazYt2lkvy";
+        String urlADW = "https://downloadADW.toolslib.net/downloadADW/file/1/1511?s=fCsBLYrYx47Y5GqwM9dAuYXazYt2lkvy";
         String saveDir = "C:\\Users\\Austin\\Desktop\\kccutil";
         //int num = 1;
         //URL and Directory creation
         URL Testing = new URL(urlADW);
         File adw = new File(saveDir + "\\ADWCleaner.exe");
-        //Trying to download the file to the directory
+        //Trying to downloadADW the file to the directory
         try {
 //            if(adw.exists())
 //            {
