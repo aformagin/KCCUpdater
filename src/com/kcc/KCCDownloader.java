@@ -14,6 +14,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class KCCDownloader extends JPanel implements ActionListener {
+    //CONSTANT VARIABLES
+    public static final int DOWNLOADING = 0;
+    public static final int PAUSED = 1;
+    public static final int COMPLETE = 2;
+    public static final int CANCELLED = 3;
+    public static final int ERROR = 4;
+
+    //String Array to hold titles of status
+    public static final String STATUSES[] = {"Downloading",
+            "Paused", "Complete", "Cancelled", "Error"};
+    //Swing Components
     JButton chooseDir;
     JButton downloaderBtn;
     JButton updateBtn;
@@ -35,7 +46,7 @@ public class KCCDownloader extends JPanel implements ActionListener {
         downloaderBtn = new JButton("Download");
         updateBtn = new JButton("Update Program");
         chooseDir.addActionListener(this);
-        downloaderBtn.addActionListener(e -> download());
+        downloaderBtn.addActionListener(e -> downloadUtil());
         add(updateBtn);
         add(chooseDir);
         add(downloaderBtn);
@@ -56,8 +67,8 @@ public class KCCDownloader extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    //Main download method that will download all files
-    public void download() {
+    //Main downloadUtil method that will downloadUtil all files
+    public void downloadUtil() {
         downloadADW();
     }
 
